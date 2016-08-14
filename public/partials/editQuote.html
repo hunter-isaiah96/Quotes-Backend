@@ -1,0 +1,24 @@
+<div class="modal">
+	<div class="box-wrapper">
+		<div class="box six columns">
+			<label>
+				<div class="image six columns" style="{{editQuote.image == null ? 'background-image : url(' + editQuote.quoter_image.url + ')' : 'background-image: url(data:' + editQuote.image.filetype + ';base64,' + editQuote.image.base64 + ')'}}">
+					<i ng-if="editQuote.image != null" class="fa fa-times" style="margin: 20px; color: #fff;" ng-click="editQuote.image = null"></i>
+				</div>
+				<input type="file" class="input" ng-model='editQuote.image' style="display: none" accept="image/x-png, image/jpeg" required base-sixty-four-input/>
+			</label>
+			<div class="text six columns">
+				<label>
+					Quoter <br />
+					<input type="text" ng-model="editQuote.quoter"/>
+				</label>
+				<label>
+					Quote <br />
+					<textarea ng-model="editQuote.quote"></textarea>
+				</label>
+				<button ng-click="submitEditQuote()">Edit Quote</button>
+				<button ng-click="state.go('home', {}, {reload: true})">Cancel</button>
+			</div>
+		</div>
+	</div>
+</div>

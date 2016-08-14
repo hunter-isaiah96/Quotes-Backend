@@ -1,0 +1,21 @@
+<div class="home">
+	<!-- <input type="text" class="search" placeholder="Search..."> -->
+	<ul>
+		<li class="three columns" ng-click="state.go('home.new')">
+			<div>
+				<i class="fa fa-plus"></i>
+				<p>Add New Quote</p>
+			</div>
+		</li>
+		<li class="three columns" ng-repeat="item in quotes track by $index">
+			<div class="image" style="background-image: url('{{item.quoter_image.url}}');">
+				<p class="quote">{{item.quote}} - <span class="quoter">{{item.quoter}}</span></p>
+			</div>
+			<div class="buttons">
+				<button class="six columns" ng-click="state.go('home.edit', {id: item._id})">Edit</a></button>
+				<button class="six columns" ng-click="deleteQuote($index)">Delete</button>
+			</div>
+		</li>
+	</ul>
+	<ui-view></ui-view>
+</div>

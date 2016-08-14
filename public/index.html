@@ -1,0 +1,31 @@
+<html>
+	<head>
+		<base href="/"/>
+		<link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="/stylesheets/skeleton.css" />
+		<link rel="stylesheet" type="text/css" href="/bower_components/sweetalert/dist/sweetalert.css" />
+		<link rel="stylesheet" type="text/css" href="/stylesheets/main.css" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	</head>
+	<body ng-app="Quotes" ng-controller="MainController">
+		<header>
+			<span class="logo"><i class="fa fa-quote-right"></i> Quotes</span>
+		</header>
+		<div class="content" >
+			<div class="sidebar">
+				<ul>
+					<li ng-repeat="item in navigation" ng-class="{'current': state.current.name == item.state}"><a ui-sref="{{item.state}}"><i class="{{item.icon}}"></i> {{item.name}}</a></li>
+				</ul>
+			</div>
+			<div ui-view class="main">
+
+			</div>
+		</div>
+		<script type="text/javascript" src="/bower_components/angular/angular.min.js"></script>
+		<script type="text/javascript" src="/bower_components/angular-base64-upload/dist/angular-base64-upload.min.js"></script>
+		<script type="text/javascript" src="/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+		<script type="text/javascript" src="/bower_components/sweetalert/dist/sweetalert.min.js"></script>
+		<script type="text/javascript" src="/bower_components/ngSweetAlert/SweetAlert.min.js"></script>
+		<script type="text/javascript" src="/javascripts/app.js"></script>
+	</body>
+</html>

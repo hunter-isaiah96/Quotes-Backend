@@ -1,0 +1,23 @@
+<div class="modal">
+	<div class="box-wrapper">
+		<div class="box six columns">
+			<label>
+				<div class="image six columns" style="{{newQuote.image.base64 == null ? 'background-image : url(https://placeholdit.imgix.net/~text?txtsize=42&txt=Add+Image&w=500&h=500&txttrack=0)' : 'background-image: url(data:' + newQuote.image.filetype + ';base64,' + newQuote.image.base64 + ')'}}">
+				</div>
+				<input type="file" class="input" ng-model='newQuote.image' style="display: none" accept="image/x-png, image/jpeg" required base-sixty-four-input/>
+			</label>
+			<div class="text six columns">
+				<label>
+					Quoter <br />
+					<input type="text" ng-model="newQuote.quoter"/>
+				</label>
+				<label>
+					Quote <br />
+					<textarea ng-model="newQuote.quote"></textarea>
+				</label>
+				<button ng-click="addNewQuote()">Submit Quote</button>
+				<a href="/"><button>Cancel</button></a>
+			</div>
+		</div>
+	</div>
+</div>
