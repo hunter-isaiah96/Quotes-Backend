@@ -1,3 +1,5 @@
+https://github.com/hunter-isaiah96/Quotes-AndroidApp for the app itself
+
 Create an .env file with these variables
 
 MLAB_URL={MongoURL}
