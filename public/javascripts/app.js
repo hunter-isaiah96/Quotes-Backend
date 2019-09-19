@@ -21,31 +21,31 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider){
 app.factory('Service', function($q, $http){
 	return {
 		getQuote: function(id){
-			return $http.get('/api/get/' + id)
+			return $http.get('http://localhost:3000/api/get/' + id)
 			.then(function(result){
 				return result.data;
 			})
 		},
 		getQuotes: function(){
-			return $http.get('/api/get')
+			return $http.get('http://localhost:3000/api/get')
 			.then(function(result){
 				return result.data;
 			})
 		},
 		deleteQuote: function(id){
-			return $http.delete('/api/delete/' + id)
+			return $http.delete('http://localhost:3000/api/delete/' + id)
 			.then(function(result){
 				return result.data;
 			})
 		},
 		newQuote: function(quoteObj){
-			return $http.post('/api/new', quoteObj)
+			return $http.post('http://localhost:3000/api/new', quoteObj)
 			.then(function(result){
 				return result.data;
 			})
 		},
 		editQuote: function(quoteObj){
-			return $http.put('/api/edit', quoteObj)
+			return $http.put('http://localhost:3000/api/edit', quoteObj)
 			.then(function(result){
 				return result.data;
 			})
@@ -66,6 +66,7 @@ app.controller('NewController', function($rootScope, $scope, Service, $state){
 	$scope.newQuote = {quote: '', quoter: '', image: {base64: null, filetype: null}};
 	$scope.state = $state;
 	$scope.addNewQuote = function(){
+		$scope.newQuote.image.base64 = $scope.newQuote.image.base64.replace(/(\r\n|\n|\r)/gm,"")
 		Service.newQuote($scope.newQuote)
 		.then(function(res){
 			if(res.success){

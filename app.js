@@ -24,7 +24,7 @@ app.set('view engine', 'jade');
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 mongoose.Promise = global.Promise;
-app.db = mongoose.connect(process.env.MLAB_URL, function(err) { if (err) {console.log(err);} });
+app.db = mongoose.connect(process.env.MLAB_URL, { useNewUrlParser: true, useUnifiedTopology: true});
 app.use(logger('dev'));
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
@@ -51,8 +51,10 @@ app.use('/', routes(app));
 app.all('/*', function(req, res) {
     res.sendFile('index.html', { root: path.join(__dirname, '/public') });
 });
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
   var err = new Error('Not Found');
   err.status = 404;
   next(err);

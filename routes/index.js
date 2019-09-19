@@ -58,7 +58,6 @@ module.exports = function(app){
 						return callback({success: false, msg: 'There was a problem overriding the image'});
 					}
 					updateStuff.quoter_image = cl_res;
-					console.log('Success')
 					callback(null, null);
 				});
 			},
@@ -71,10 +70,9 @@ module.exports = function(app){
 				})
 			}
 		], function(err, succ){
-			if(err){
+			if( err) {
 				return res.status(500).json(err);
-			}else{
-				console.log('pickles')
+			} else {
 				return res.status(200).json({success: true, msg: 'Success'});
 			}
 		});
@@ -85,15 +83,15 @@ module.exports = function(app){
 			quote: req.body.quote,
 			quoter: req.body.quoter
 		})
-		Cloudinary.v2.uploader.upload('data:' + req.body.image.filetype + ';base64,' + req.body.image.base64, function(err, cl_res){
-			if(err){
+		Cloudinary.v2.uploader.upload(`data:${req.body.image.filetype};base64,${req.body.image.base64}`, function(err, cl_res){
+			if (err) {
 				return res.json({success: false, msg: 'There was a problem uploading this image'});
-			}else{
+			} else {
 				newQuote.quoter_image = cl_res;
 				newQuote.save(function(err, quote){
-					if(err || !quote){
+					if (err || !quote){
 						throw err;
-					}else{
+					} else {
 						res.status(200).json({success: true, msg: 'Successfully submitted Quote'})
 					}
 				})
